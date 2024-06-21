@@ -1,8 +1,17 @@
 const container = document.querySelector('.container'); 
 const gridBtn = document.getElementById('gridBtn');
 const resetBtn = document.getElementById('resetBtn');
+const colourBtn = document.getElementById('colourBtn');
 let gridSize= 16;
 const containerSize = 960;
+
+function randRGB() { 
+    const r = Math.floor(Math.random()* 256); 
+    const g = Math.floor(Math.random() * 256); 
+    const b = Math.floor(Math.random() * 256); 
+
+    return `rgb(${r}, ${g}, ${b})`; 
+}
 
 function createGrid(num) {
     container.innerHTML = ''; 
@@ -14,7 +23,14 @@ function createGrid(num) {
         square.style.width = `${squareSize}px`; 
         square.style.height = `${squareSize}px`; 
         square.addEventListener("mouseenter", () => {
-            square.style.backgroundColor = 'black';
+            if (colourBtn.classList.contains('active')) {
+                if (!square.classList.contains('coloured')) {
+                    square.style.backgroundColor = randRGB();
+                    square.classList.add('coloured');
+                }
+            } else {
+                square.style.backgroundColor = 'black';
+            }
         }); 
     
         container.appendChild(square);
@@ -33,4 +49,8 @@ gridBtn.addEventListener('click', () => {
 
 resetBtn.addEventListener('click', () => {
     createGrid(gridSize);
-})
+});
+
+colourBtn.addEventListener('click', () => {
+    colourBtn.classList.toggle('active'); 
+});
