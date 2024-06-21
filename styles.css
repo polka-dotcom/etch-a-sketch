@@ -45,6 +45,10 @@ header {
     margin-right: 15px;
 }
 
+#colourBtn {
+    border: 4px solid black;
+}
+
 #gridBtn:hover, #resetBtn:hover, #colourBtn:hover {
     background-color: black; 
 }
