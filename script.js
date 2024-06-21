@@ -22,6 +22,9 @@ function createGrid(num) {
         square.classList.add('square'); 
         square.style.width = `${squareSize}px`; 
         square.style.height = `${squareSize}px`; 
+
+        let opacity = 0.1; 
+
         square.addEventListener("mouseenter", () => {
             if (colourBtn.classList.contains('active')) {
                 if (!square.classList.contains('coloured')) {
@@ -29,7 +32,10 @@ function createGrid(num) {
                     square.classList.add('coloured');
                 }
             } else {
-                square.style.backgroundColor = 'black';
+                if (opacity < 1) {
+                    opacity += 0.1;
+                }
+                square.style.backgroundColor = `rgba(0, 0, 0, ${opacity})`;
             }
         }); 
     
